@@ -2,7 +2,6 @@
 require_once '../includes/header.php';
 require_once '../includes/modal.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Placeholder for password reset logic
     echo "<script>showToast('Password reset link sent!', 'success');</script>";
 }
 renderModal('forgot-password-modal', 'Reset Password', 

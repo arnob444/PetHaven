@@ -5,12 +5,14 @@ require_once 'includes/config.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetHaven - Dashboard</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
     <header>
         <div class="logo">PetHaven</div>
@@ -27,6 +29,8 @@ require_once 'includes/config.php';
     </header>
 
     <?php
+    // include 'includes/header.php';
+
     if (!isset($_SESSION['user_id'])) {
         header('Location: auth/login.php');
         exit();
@@ -60,13 +64,27 @@ require_once 'includes/config.php';
         <h2>Dashboard</h2>
 
         <h3>My Pets</h3>
+        <a href="pet/add_pet.php" class="btn" style="margin-bottom: 1rem;">Add a Pet</a>
         <div class="pet-grid">
             <?php while ($pet = mysqli_fetch_assoc($pets_result)): ?>
                 <div class="pet-card">
+                    <?php if ($pet['photo']): ?>
+                        <img src="assets/images/uploads/<?php echo htmlspecialchars($pet['photo']); ?>" alt="<?php echo htmlspecialchars($pet['name']); ?>">
+                    <?php else: ?>
+                        <img src="assets/images/placeholder.jpg" alt="Pet Placeholder">
+                    <?php endif; ?>
                     <h3><?php echo htmlspecialchars($pet['name']); ?></h3>
+                    <p><strong>Type:</strong> <?php echo ucfirst(htmlspecialchars($pet['listing_type'])); ?></p>
+                    <?php if ($pet['listing_type'] == 'buy_sell' && $pet['price']): ?>
+                        <p><strong>Price:</strong> $<?php echo number_format($pet['price'], 2); ?></p>
+                    <?php endif; ?>
                     <p><strong>Breed:</strong> <?php echo htmlspecialchars($pet['breed']); ?></p>
+                    <p><strong>Age:</strong> <?php echo htmlspecialchars($pet['age']); ?> years</p>
+                    <p><strong>Category:</strong> <?php echo htmlspecialchars($pet['category']); ?></p>
+                    <p><strong>Location:</strong> <?php echo htmlspecialchars($pet['location']); ?></p>
                     <a href="pet/edit_pet.php?id=<?php echo $pet['id']; ?>" class="btn">Edit</a>
                     <a href="pet/delete_pet.php?id=<?php echo $pet['id']; ?>" class="btn" onclick="return confirm('Are you sure?')">Delete</a>
+                    <a href="pet/view_pet.php?id=<?php echo $pet['id']; ?>" class="btn">View</a>
                 </div>
             <?php endwhile; ?>
             <?php if (mysqli_num_rows($pets_result) == 0): ?>
@@ -108,6 +126,11 @@ require_once 'includes/config.php';
         </div>
     </section>
 
+
+
+
+
+
     <footer>
         <div class="links">
             <div>
@@ -126,4 +149,5 @@ require_once 'includes/config.php';
         </div>
     </footer>
 </body>
+
 </html>

@@ -48,6 +48,10 @@ require_once 'includes/config.php';
     </section>
 
     <!-- Search/Filter Section -->
+    <?php
+    // include 'includes/header.php';
+    ?>
+
     <section class="search-filter">
         <h3>Find Your Perfect Pet</h3>
         <form method="GET" action="search.php" class="filter-form">
@@ -60,14 +64,18 @@ require_once 'includes/config.php';
             <input type="number" name="age" placeholder="Age" min="0">
             <input type="text" name="breed" placeholder="Breed">
             <input type="text" name="location" placeholder="Location">
+            <select name="listing_type">
+                <option value="">All Types</option>
+                <option value="adoption">Adoption</option>
+                <option value="buy_sell">Buy/Sell</option>
+            </select>
             <button type="submit" class="btn">Search</button>
         </form>
     </section>
 
-    <!-- Featured Pets Section -->
     <section id="featured-pets" class="featured-pets">
         <h2>Featured Pets</h2>
-        <p>Meet adorable pets waiting for their forever homes</p>
+        <p>Meet adorable pets waiting for their forever homes or purchase</p>
         <a href="search.php" class="view-all">View All Pets →</a>
         <div class="pet-grid">
             <?php
@@ -81,31 +89,16 @@ require_once 'includes/config.php';
                         <img src="assets/images/placeholder.jpg" alt="Pet Placeholder">
                     <?php endif; ?>
                     <h3><?php echo htmlspecialchars($pet['name']); ?></h3>
+                    <p><strong>Type:</strong> <?php echo ucfirst(htmlspecialchars($pet['listing_type'])); ?></p>
+                    <?php if ($pet['listing_type'] == 'buy_sell' && $pet['price']): ?>
+                        <p><strong>Price:</strong> $<?php echo number_format($pet['price'], 2); ?></p>
+                    <?php endif; ?>
                     <p><strong>Breed:</strong> <?php echo htmlspecialchars($pet['breed']); ?></p>
                     <p><strong>Age:</strong> <?php echo htmlspecialchars($pet['age']); ?> years</p>
                     <p><strong>Location:</strong> <?php echo htmlspecialchars($pet['location']); ?></p>
-                    <a href="pet/view_pet.php?id=<?php echo $pet['id']; ?>" class="btn">Meet <?php echo htmlspecialchars($pet['name']); ?></a>
+                    <a href="pet/view_pet.php?id=<?php echo $pet['id']; ?>" class="btn">View Details</a>
                 </div>
             <?php endwhile; ?>
-        </div>
-    </section>
-
-    <!-- Adoption Stories Section -->
-    <section class="adoption-stories">
-        <h2>Adoption Stories</h2>
-        <div class="stories-grid">
-            <div class="story-card">
-                <img src="assets/images/story1.jpg" alt="Story 1">
-                <p>An adoption can change your life...</p>
-            </div>
-            <div class="story-card">
-                <img src="assets/images/story2.jpg" alt="Story 2">
-                <p>An adoption can change your life...</p>
-            </div>
-            <div class="story-card">
-                <img src="assets/images/story3.jpg" alt="Story 3">
-                <p>An adoption can change your life...</p>
-            </div>
         </div>
     </section>
 
@@ -113,7 +106,7 @@ require_once 'includes/config.php';
         <div class="links">
             <div>
                 <h4>Connect with Us</h4>
-                <p>Email: <a href="mailto:pethaven@gmail.com">pethaven@gmail.com</a></p>
+                <p>Email: <a href="dasarnob@gmail.com">pethaven@gmail.com</a></p>
             </div>
             <div>
                 <h4>Quick Links</h4>

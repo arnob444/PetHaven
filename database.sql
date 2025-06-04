@@ -9,18 +9,18 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE pets (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    name VARCHAR(50) NOT NULL,
-    breed VARCHAR(50),
-    age INT,
-    category ENUM('dog', 'cat', 'other') NOT NULL,
-    photo VARCHAR(255),
-    location VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
+-- CREATE TABLE pets (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     user_id INT,
+--     name VARCHAR(50) NOT NULL,
+--     breed VARCHAR(50),
+--     age INT,
+--     category ENUM('dog', 'cat', 'other') NOT NULL,
+--     photo VARCHAR(255),
+--     location VARCHAR(100),
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (user_id) REFERENCES users(id)
+-- );
 
 CREATE TABLE adoption_applications (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -39,4 +39,19 @@ CREATE TABLE medical_records (
     vaccine_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (pet_id) REFERENCES pets(id)
+);
+
+CREATE TABLE pets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    breed VARCHAR(100),
+    age INT,
+    category VARCHAR(50),
+    photo VARCHAR(255),
+    location VARCHAR(100),
+    listing_type ENUM('adoption', 'buy_sell') DEFAULT 'adoption', -- New column
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    price DECIMAL(10, 2) DEFAULT NULL, -- New column for buy/sell price
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

@@ -5,12 +5,14 @@ require_once 'includes/config.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetHaven - Search</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
     <header>
         <div class="logo">PetHaven</div>
@@ -38,6 +40,11 @@ require_once 'includes/config.php';
             <input type="number" name="age" placeholder="Age" min="0" value="<?php echo isset($_GET['age']) ? htmlspecialchars($_GET['age']) : ''; ?>">
             <input type="text" name="breed" placeholder="Breed" value="<?php echo isset($_GET['breed']) ? htmlspecialchars($_GET['breed']) : ''; ?>">
             <input type="text" name="location" placeholder="Location" value="<?php echo isset($_GET['location']) ? htmlspecialchars($_GET['location']) : ''; ?>">
+            <select name="listing_type">
+                <option value="">All Types</option>
+                <option value="adoption" <?php echo isset($_GET['listing_type']) && $_GET['listing_type'] == 'adoption' ? 'selected' : ''; ?>>Adoption</option>
+                <option value="buy_sell" <?php echo isset($_GET['listing_type']) && $_GET['listing_type'] == 'buy_sell' ? 'selected' : ''; ?>>Buy/Sell</option>
+            </select>
             <button type="submit" class="btn">Search</button>
         </form>
     </section>
@@ -64,6 +71,10 @@ require_once 'includes/config.php';
                 $where .= " AND location LIKE ?";
                 $params[] = "%" . $_GET['location'] . "%";
             }
+            if (isset($_GET['listing_type']) && !empty($_GET['listing_type'])) {
+                $where .= " AND listing_type = ?";
+                $params[] = $_GET['listing_type'];
+            }
 
             $query = "SELECT * FROM pets $where ORDER BY created_at DESC";
             $stmt = mysqli_prepare($conn, $query);
@@ -81,10 +92,14 @@ require_once 'includes/config.php';
                         <img src="assets/images/placeholder.jpg" alt="Pet Placeholder">
                     <?php endif; ?>
                     <h3><?php echo htmlspecialchars($pet['name']); ?></h3>
+                    <p><strong>Type:</strong> <?php echo ucfirst(htmlspecialchars($pet['listing_type'])); ?></p>
+                    <?php if ($pet['listing_type'] == 'buy_sell' && $pet['price']): ?>
+                        <p><strong>Price:</strong> $<?php echo number_format($pet['price'], 2); ?></p>
+                    <?php endif; ?>
                     <p><strong>Breed:</strong> <?php echo htmlspecialchars($pet['breed']); ?></p>
                     <p><strong>Age:</strong> <?php echo htmlspecialchars($pet['age']); ?> years</p>
                     <p><strong>Location:</strong> <?php echo htmlspecialchars($pet['location']); ?></p>
-                    <a href="pet/view_pet.php?id=<?php echo $pet['id']; ?>" class="btn">Meet <?php echo htmlspecialchars($pet['name']); ?></a>
+                    <a href="pet/view_pet.php?id=<?php echo $pet['id']; ?>" class="btn">View Details</a>
                 </div>
             <?php endwhile; ?>
             <?php if (mysqli_num_rows($result) == 0): ?>
@@ -111,4 +126,5 @@ require_once 'includes/config.php';
         </div>
     </footer>
 </body>
+
 </html>

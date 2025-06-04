@@ -5,8 +5,7 @@ require_once '../includes/header.php';
 
 $pet_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// Fetch pet details
-$query = "SELECT p.*, u.username FROM pets p JOIN users u ON p.user_id = u.id WHERE p.id = ?";
+$query = "SELECT p.*, u.username, u.email FROM pets p JOIN users u ON p.user_id = u.id WHERE p.id = ?";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "i", $pet_id);
 mysqli_stmt_execute($stmt);
@@ -17,7 +16,6 @@ if (!$pet) {
     exit();
 }
 
-// Check if the user has already applied
 $has_applied = false;
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -36,7 +34,11 @@ if (isset($_SESSION['user_id'])) {
         <?php if ($pet['photo']): ?>
             <img src="../assets/images/uploads/<?php echo htmlspecialchars($pet['photo']); ?>" alt="<?php echo htmlspecialchars($pet['name']); ?>">
         <?php else: ?>
-            <img src="../assets/images/cat1.jpg" alt="Pet Placeholder">
+            <img src="../assets/images/placeholder.jpg" alt="Pet Placeholder">
+        <?php endif; ?>
+        <p><strong>Type:</strong> <?php echo ucfirst(htmlspecialchars($pet['listing_type'])); ?></p>
+        <?php if ($pet['listing_type'] == 'buy_sell' && $pet['price']): ?>
+            <p><strong>Price:</strong> $<?php echo number_format($pet['price'], 2); ?></p>
         <?php endif; ?>
         <p><strong>Breed:</strong> <?php echo htmlspecialchars($pet['breed']); ?></p>
         <p><strong>Age:</strong> <?php echo htmlspecialchars($pet['age']); ?> years</p>
@@ -45,10 +47,14 @@ if (isset($_SESSION['user_id'])) {
         <p><strong>Posted by:</strong> <?php echo htmlspecialchars($pet['username']); ?></p>
         <p><strong>Posted on:</strong> <?php echo htmlspecialchars($pet['created_at']); ?></p>
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $pet['user_id']): ?>
-            <?php if (!$has_applied): ?>
-                <a href="../adoption/apply.php?pet_id=<?php echo $pet['id']; ?>" class="btn">Apply to Adopt</a>
-            <?php else: ?>
-                <p style="color: green;">You have already applied to adopt this pet.</p>
+            <?php if ($pet['listing_type'] == 'adoption'): ?>
+                <?php if (!$has_applied): ?>
+                    <a href="../adoption/apply.php?pet_id=<?php echo $pet['id']; ?>" class="btn">Apply to Adopt</a>
+                <?php else: ?>
+                    <p style="color: green;">You have already applied to adopt this pet.</p>
+                <?php endif; ?>
+            <?php elseif ($pet['listing_type'] == 'buy_sell'): ?>
+                <a href="mailto:<?php echo htmlspecialchars($pet['email']); ?>?subject=Inquiry about <?php echo htmlspecialchars($pet['name']); ?>" class="btn">Contact Seller</a>
             <?php endif; ?>
         <?php endif; ?>
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $pet['user_id']): ?>

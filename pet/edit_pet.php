@@ -29,6 +29,8 @@ require_once '../includes/config.php';
     </header>
 
     <?php
+    // include '../includes/header.php';
+
     if (!isset($_SESSION['user_id'])) {
         header('Location: ../auth/login.php');
         exit();
@@ -54,18 +56,20 @@ require_once '../includes/config.php';
         $age = (int)$_POST['age'];
         $category = mysqli_real_escape_string($conn, $_POST['category']);
         $location = mysqli_real_escape_string($conn, $_POST['location']);
+        $listing_type = mysqli_real_escape_string($conn, $_POST['listing_type']);
+        $price = $listing_type == 'buy_sell' ? mysqli_real_escape_string($conn, $_POST['price']) : null;
         $photo = $_FILES['photo']['name'];
         $photo_tmp = $_FILES['photo']['tmp_name'];
 
         $photo_path = $pet['photo'];
         if ($photo) {
-            $photo_path = "assets/images/uploads/" . basename($photo);
+            $photo_path = "../assets/images/uploads/" . basename($photo);
             move_uploaded_file($photo_tmp, $photo_path);
         }
 
-        $query = "UPDATE pets SET name = ?, breed = ?, age = ?, category = ?, photo = ?, location = ? WHERE id = ? AND user_id = ?";
+        $query = "UPDATE pets SET name = ?, breed = ?, age = ?, category = ?, photo = ?, location = ?, listing_type = ?, price = ? WHERE id = ? AND user_id = ?";
         $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "ssisssii", $name, $breed, $age, $category, $photo_path, $location, $pet_id, $user_id);
+        mysqli_stmt_bind_param($stmt, "ssissssdii", $name, $breed, $age, $category, $photo_path, $location, $listing_type, $price, $pet_id, $user_id);
 
         if (mysqli_stmt_execute($stmt)) {
             header('Location: ../dashboard.php');
@@ -105,6 +109,17 @@ require_once '../includes/config.php';
                 <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($pet['location']); ?>">
             </div>
             <div>
+                <label for="listing_type">Listing Type:</label>
+                <select id="listing_type" name="listing_type" required>
+                    <option value="adoption" <?php echo $pet['listing_type'] == 'adoption' ? 'selected' : ''; ?>>Adoption</option>
+                    <option value="buy_sell" <?php echo $pet['listing_type'] == 'buy_sell' ? 'selected' : ''; ?>>Buy/Sell</option>
+                </select>
+            </div>
+            <div id="price_field" style="display: <?php echo $pet['listing_type'] == 'buy_sell' ? 'block' : 'none'; ?>;">
+                <label for="price">Price (USD):</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" value="<?php echo $pet['price'] ? htmlspecialchars($pet['price']) : ''; ?>" <?php echo $pet['listing_type'] == 'buy_sell' ? 'required' : ''; ?>>
+            </div>
+            <div>
                 <label for="photo">Photo:</label>
                 <input type="file" id="photo" name="photo" accept="image/*">
                 <?php if ($pet['photo']): ?>
@@ -115,6 +130,19 @@ require_once '../includes/config.php';
             <a href="../dashboard.php" class="btn">Back to Dashboard</a>
         </form>
     </section>
+
+    <script>
+        document.getElementById('listing_type').addEventListener('change', function() {
+            var priceField = document.getElementById('price_field');
+            if (this.value === 'buy_sell') {
+                priceField.style.display = 'block';
+                document.getElementById('price').setAttribute('required', 'required');
+            } else {
+                priceField.style.display = 'none';
+                document.getElementById('price').removeAttribute('required');
+            }
+        });
+    </script>
 
     <footer>
         <div class="links">

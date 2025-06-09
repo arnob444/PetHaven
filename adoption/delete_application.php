@@ -1,6 +1,7 @@
 <?php
+ob_start(); // Start output buffering to prevent header issues
 session_start();
-require_once '../../includes/config.php';
+require_once '../includes/config.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../../auth/login.php');
@@ -25,11 +26,17 @@ $delete_query = "DELETE FROM adoption_applications WHERE id = ?";
 $stmt = mysqli_prepare($conn, $delete_query);
 mysqli_stmt_bind_param($stmt, "i", $app_id);
 
+// Debug: Log the deletion attempt
+error_log("Attempting to delete application ID: $app_id");
+
 if (mysqli_stmt_execute($stmt)) {
     $success = "Application deleted successfully.";
 } else {
-    $error = "Failed to delete application.";
+    $error = "Failed to delete application: " . mysqli_error($conn); // Add detailed error message
+    error_log("Deletion failed: " . mysqli_error($conn)); // Log the error
 }
+
+ob_end_flush(); // End output buffering
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +51,7 @@ if (mysqli_stmt_execute($stmt)) {
       href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
     />
 
-    <title>Pawsitive Match - Delete Application</title>
+    <title>PetHaven - Delete Application</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -60,7 +67,7 @@ if (mysqli_stmt_execute($stmt)) {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor"></path>
               </svg>
             </div>
-            <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]">Pawsitive Match</h2>
+            <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]">PetHaven</h2>
           </div>
           <div class="flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
@@ -77,10 +84,10 @@ if (mysqli_stmt_execute($stmt)) {
                   <span class="truncate">Logout</span>
                 </a>
               <?php else: ?>
-                <a href="login.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f39224] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
+                <a href="../../auth/login.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f39224] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
                   <span class="truncate">Log in</span>
                 </a>
-                <a href="register.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f5f2f0] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
+                <a href="../../auth/register.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f5f2f0] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
                   <span class="truncate">Sign up</span>
                 </a>
               <?php endif; ?>

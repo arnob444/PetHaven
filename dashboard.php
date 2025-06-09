@@ -43,7 +43,7 @@ $medical_result = mysqli_stmt_get_result($stmt);
       href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
     />
 
-    <title>Pawsitive Match - Dashboard</title>
+    <title>PetHaven - Dashboard</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -59,7 +59,7 @@ $medical_result = mysqli_stmt_get_result($stmt);
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor"></path>
               </svg>
             </div>
-            <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]">Pawsitive Match</h2>
+            <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]">PetHaven</h2>
           </div>
           <div class="flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
@@ -97,13 +97,16 @@ $medical_result = mysqli_stmt_get_result($stmt);
                 <span class="truncate">Add a Pet</span>
               </a>
             </div>
+            <p class="text-[#8a7760] text-sm font-normal leading-normal px-4 py-1">
+              You can only add medical records for pets you’ve personally added.
+            </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-3">
               <?php while ($pet = mysqli_fetch_assoc($pets_result)): ?>
                 <div class="flex flex-col gap-3 rounded-xl border border-[#e4e1dd] bg-white p-4">
                   <?php if ($pet['photo']): ?>
-                    <img src="<?php echo htmlspecialchars($pet['photo']); ?>" alt="<?php echo htmlspecialchars($pet['name']); ?>" class="w-full h-48 object-cover rounded-lg">
+                    <img src="<?php echo htmlspecialchars('assets/images/uploads/' . basename($pet['photo'])); ?>" alt="<?php echo htmlspecialchars($pet['name']); ?>" class="w-full h-48 object-cover rounded-lg">
                   <?php else: ?>
-                    <img src="assets/images/placeholder.jpg" alt="Pet Placeholder" class="w-full h-48 object-cover rounded-lg">
+                    <img src="<?php echo htmlspecialchars('assets/images/placeholder.jpg'); ?>" alt="Pet Placeholder" class="w-full h-48 object-cover rounded-lg">
                   <?php endif; ?>
                   <h3 class="text-[#181511] text-lg font-bold leading-tight"><?php echo htmlspecialchars($pet['name']); ?></h3>
                   <p class="text-[#8a7760] text-sm font-normal leading-normal">
@@ -176,7 +179,12 @@ $medical_result = mysqli_stmt_get_result($stmt);
             <?php endif; ?>
 
             <!-- Medical Logs Section -->
-            <h3 class="text-[#181511] text-xl font-bold leading-tight px-4 py-3">Medical Logs</h3>
+            <div class="flex justify-between items-center px-4 py-3">
+              <h3 class="text-[#181511] text-xl font-bold leading-tight">Medical Logs</h3>
+              <a href="medical/add_medical.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f39224] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
+                <span class="truncate">Add Medical Record</span>
+              </a>
+            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-3">
               <?php while ($medical = mysqli_fetch_assoc($medical_result)): ?>
                 <div class="flex flex-col gap-3 rounded-xl border border-[#e4e1dd] bg-white p-4">
@@ -198,7 +206,7 @@ $medical_result = mysqli_stmt_get_result($stmt);
                 </div>
               <?php endwhile; ?>
             </div>
-            <?php if (mysqli_num_rows($medical_result) == 0): ?>
+            <?php if (mysqli_num_rows($pets_result) == 0): ?>
               <p class="text-[#8a7760] text-sm font-normal leading-normal px-4 text-center py-3">
                 No medical records yet. 
                 <a href="medical/add_medical.php" class="text-[#f39224] underline">Add a record</a>

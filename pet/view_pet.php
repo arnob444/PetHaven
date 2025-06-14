@@ -43,6 +43,12 @@ if (isset($_SESSION['user_id'])) {
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        function toggleSellerDetails() {
+            const card = document.getElementById('sellerDetailsCard');
+            card.classList.toggle('hidden');
+        }
+    </script>
 </head>
 
 <body>
@@ -113,9 +119,9 @@ if (isset($_SESSION['user_id'])) {
                       <p class="text-[#181511] text-sm font-normal leading-normal px-4 py-2 bg-[#f5f2f0] rounded-xl">You have already applied to adopt this pet.</p>
                     <?php endif; ?>
                   <?php elseif ($pet['listing_type'] == 'buy_sell'): ?>
-                    <a href="mailto:<?php echo htmlspecialchars($pet['email']); ?>?subject=Inquiry about <?php echo htmlspecialchars($pet['name']); ?>" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f39224] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
+                    <button onclick="toggleSellerDetails()" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f39224] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
                       <span class="truncate">Contact Seller</span>
-                    </a>
+                    </button>
                   <?php endif; ?>
                 <?php endif; ?>
                 <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $pet['user_id']): ?>
@@ -150,6 +156,20 @@ if (isset($_SESSION['user_id'])) {
             </div>
           </div>
         </footer>
+      </div>
+
+      <!-- Seller Details Card -->
+      <div id="sellerDetailsCard" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-xl shadow-lg w-[400px] max-w-[90%]">
+          <h3 class="text-[#181511] text-lg font-bold leading-tight mb-4">Seller Details</h3>
+          <div class="flex flex-col gap-2">
+            <p class="text-[#181511] text-base font-medium leading-normal"><strong>Username:</strong> <?php echo htmlspecialchars($pet['username']); ?></p>
+            <p class="text-[#181511] text-base font-medium leading-normal"><strong>Email:</strong> <?php echo htmlspecialchars($pet['email']); ?></p>
+          </div>
+          <button onclick="toggleSellerDetails()" class="mt-4 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f5f2f0] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
+            <span class="truncate">Close</span>
+          </button>
+        </div>
       </div>
     </div>
 </body>

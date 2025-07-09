@@ -46,44 +46,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
     <div class="layout-container flex h-full grow flex-col">
       <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f2f1] px-10 py-3">
-          <div class="flex items-center gap-4 text-[#171512]">
-            <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-            <h2 class="text-[#171512] text-lg font-bold leading-tight tracking-[-0.015em]">PetHaven</h2>
+        <div class="flex items-center gap-4 text-[#171512]">
+          <div class="size-4">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
+                fill="currentColor"></path>
+            </svg>
           </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <div class="flex items-center gap-9">
-              <a class="text-[#171512] text-sm font-medium leading-normal" href="index.php">Home</a>
-              <a class="text-[#171512] text-sm font-medium leading-normal" href="search.php?listing_type=adoption">Adopt</a>
-              <a class="text-[#171512] text-sm font-medium leading-normal" href="search.php?listing_type=buy_sell">Buy/Sell</a>
-            </div>
-            <div class="flex gap-2">
-              <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="dashboard.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f3e6d7] text-[#171512] text-sm font-bold leading-normal tracking-[0.015em]">
-                  <span class="truncate">Dashboard</span>
-                </a>
-                <a href="auth/logout.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f4f2f1] text-[#171512] text-sm font-bold leading-normal tracking-[0.015em]">
-                  <span class="truncate">Logout</span>
-                </a>
-              <?php else: ?>
-                <a href="auth/login.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f3e6d7] text-[#171512] text-sm font-bold leading-normal tracking-[0.015em]">
-                  <span class="truncate">Login</span>
-                </a>
-                <a href="auth/register.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f4f2f1] text-[#171512] text-sm font-bold leading-normal tracking-[0.015em]">
-                  <span class="truncate">Register</span>
-                </a>
-              <?php endif; ?>
-            </div>
+          <h2 class="text-[#171512] text-lg font-bold leading-tight tracking-[-0.015em]">PetHaven</h2>
+        </div>
+        <div class="flex flex-1 justify-end gap-8">
+          <div class="flex items-center gap-9">
+            <a class="text-[#171512] text-sm font-medium leading-normal" href="../index.php">Home</a>
+            <a class="text-[#171512] text-sm font-medium leading-normal" href="../search.php?listing_type=adoption">Adopt</a>
+            <a class="text-[#171512] text-sm font-medium leading-normal" href="../search.php?listing_type=buy_sell">Buy/Sell</a>
           </div>
-        </header>
+          <div class="flex gap-2">
+            <?php if (isset($_SESSION['user_id'])): ?>
+              <a href="../dashboard.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f3e6d7] text-[#171512] text-sm font-bold leading-normal tracking-[0.015em]">
+                <span class="truncate">Dashboard</span>
+              </a>
+              <a href="../auth/logout.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f4f2f1] text-[#171512] text-sm font-bold leading-normal tracking-[0.015em]">
+                <span class="truncate">Logout</span>
+              </a>
+            <?php else: ?>
+              <a href="../auth/login.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f3e6d7] text-[#171512] text-sm font-bold leading-normal tracking-[0.015em]">
+                <span class="truncate">Login</span>
+              </a>
+              <a href="../auth/register.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f4f2f1] text-[#171512] text-sm font-bold leading-normal tracking-[0.015em]">
+                <span class="truncate">Register</span>
+              </a>
+            <?php endif; ?>
+          </div>
+        </div>
+      </header>
 
       <div class="px-40 flex flex-1 justify-center py-5">
         <div class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
@@ -113,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   value="" />
               </label>
             </div>
-            <p class="text-[#8a7760] text-sm font-normal leading-normal pb-3 pt-1 px-4 underline">Forgot password?</p>
+            <p class="text-[#8a7760] text-sm font-normal leading-normal pb-3 pt-1 px-4"><a href="../auth/forgot_password.php">Forgot password?</a></p>
             <div class="flex px-4 py-3">
               <button
                 type="submit"
@@ -121,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <span class="truncate">Log in</span>
               </button>
             </div>
-            <p class="text-[#8a7760] text-sm font-normal leading-normal pb-3 pt-1 px-5 text-center underline"><a href="register.php">Don't have an account?&nbsp;&nbsp;&nbsp;Sign up</a></p>
+            <p class="text-[#8a7760] text-sm font-normal leading-normal pb-3 pt-1 px-5 text-center ">Don't have an account?<a href="../auth/register.php">&nbsp;&nbsp;&nbsp;Sign up</a></p>
           </form>
         </div>
       </div>

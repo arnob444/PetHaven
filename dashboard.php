@@ -214,23 +214,7 @@ $medical_result = mysqli_stmt_get_result($stmt);
             <?php endif; ?>
           </div>
         </div>
-        <footer class="bg-[#f5f2f0] px-10 py-6 mt-auto">
-          <div class="flex flex-wrap justify-between gap-6">
-            <div>
-              <h4 class="text-[#181511] text-sm font-bold leading-normal mb-2">Connect with Us</h4>
-              <p class="text-[#8a7760] text-sm font-normal leading-normal">Email: <a href="mailto:pethaven@gmail.com" class="underline">pethaven@gmail.com</a></p>
-            </div>
-            <div>
-              <h4 class="text-[#181511] text-sm font-bold leading-normal mb-2">Quick Links</h4>
-              <p class="text-[#8a7760] text-sm font-normal leading-normal"><a href="index.php" class="underline">Home</a></p>
-              <p class="text-[#8a7760] text-sm font-normal leading-normal"><a href="search.php?listing_type=adoption" class="underline">Adoption</a></p>
-            </div>
-            <div>
-              <h4 class="text-[#181511] text-sm font-bold leading-normal mb-2">Follow Us</h4>
-              <p class="text-[#8a7760] text-sm font-normal leading-normal"><a href="#" class="underline">Instagram</a></p>
-            </div>
-          </div>
-        </footer>
+        <?php include 'includes/footer.php'; ?>
       </div>
     </div>
 </body>

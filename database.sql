@@ -50,8 +50,8 @@ CREATE TABLE pets (
     category VARCHAR(50),
     photo VARCHAR(255),
     location VARCHAR(100),
-    listing_type ENUM('adoption', 'buy_sell') DEFAULT 'adoption', -- New column
+    listing_type ENUM('adoption', 'buy_sell') DEFAULT 'adoption',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    price DECIMAL(10, 2) DEFAULT NULL, -- New column for buy/sell price
+    price DECIMAL(10, 2) DEFAULT NULL, 
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

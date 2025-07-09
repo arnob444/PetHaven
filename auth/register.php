@@ -76,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="flex flex-1 justify-end gap-8">
           <div class="flex items-center gap-9">
             <a class="text-[#181511] text-sm font-medium leading-normal" href="../index.php">Home</a>
-            <a class="text-[#181511] text-sm font-medium leading-normal" href="#">Adopt</a>
-            <a class="text-[#181511] text-sm font-medium leading-normal" href="#">Buy/Sell</a>
+            <a class="text-[#181511] text-sm font-medium leading-normal" href="../search.php?listing_type=adoption"">Adopt</a>
+            <a class="text-[#181511] text-sm font-medium leading-normal" href="../search.php?listing_type=buy_sell">Buy/Sell</a>
           </div>
           <div class="flex gap-2">
             <?php if (isset($_SESSION['user_id'])): ?>
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <span class="truncate">Logout</span>
               </a>
             <?php else: ?>
-              <a href="login.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f5f2f0] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
+              <a href="../auth/login.php" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f5f2f0] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
                 <span class="truncate">Sign in</span>
               </a>
             <?php endif; ?>
@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </button>
               </div>
               <p class="text-[#8a7760] text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center">
-                By signing up, you agree to our Terms of Service and Privacy Policy.
+                By signing up, you agree to our terms of service and privacy policy.
               </p>
             </form>
           <?php endif; ?>

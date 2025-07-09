@@ -183,6 +183,7 @@ require_once 'includes/config.php';
             </div>
           </div>
         </div>
+         <?php include 'includes/footer.php'; ?>
       </div>
     </div>
 </body>

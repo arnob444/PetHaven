@@ -61,7 +61,7 @@ $result = mysqli_stmt_get_result($stmt);
             <div class="size-4">
               <img src="assets/images/icons/logo.png" alt="PetHaven Logo" class="w-5 h-4" />
             </div>
-            <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]">PetHaven</h2>
+            <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]"><a href="index.php">PetHaven</a></h2>
           </div>
           <div class="flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">

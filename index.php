@@ -30,14 +30,7 @@ require_once 'includes/config.php';
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f2f1] px-10 py-3">
           <div class="flex items-center gap-4 text-[#171512]">
             <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
+              <img src="assets/images/icons/logo.png" alt="PetHaven Logo" class="w-5 h-4" />
             </div>
             <h2 class="text-[#171512] text-lg font-bold leading-tight tracking-[-0.015em]">PetHaven</h2>
           </div>
@@ -141,7 +134,7 @@ require_once 'includes/config.php';
               <div class="@[480px]:p-4">
                 <div
                   class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
-                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxPoRNY3lgJY2v3cwUOAhE5GQmJjXBkPLN7eeg5cdP1KtTBGKhv0PXpyK1N9FVDsrHR_Aa5CEOvYb6jWjCEBxrKdBro3_hgUz_SvEiTbOJ7S7L9hNcQgR6F-vVBzX5qnG0rIXMyERgCurEUlYu2lkySrwJtfN-8Ss4Yvu72AZla3qXLTN0bbYtsrA3PucViKw8CSYUxh54topeU1H_58x7bCbQ_nZTU5ihFU6-YsZXDQO_MBYk8_t-6bgL0BUN0DYUaA89Toimrmo");'
+                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("assets/images/uploads/bg_dog.png");'
                 >
                   <h1
                     class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] text-center"

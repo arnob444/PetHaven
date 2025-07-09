@@ -55,9 +55,7 @@ $medical_result = mysqli_stmt_get_result($stmt);
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f5f2f0] px-10 py-3">
           <div class="flex items-center gap-4 text-[#181511]">
             <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor"></path>
-              </svg>
+              <img src="assets/images/icons/logo.png" alt="PetHaven Logo" class="w-5 h-4" />
             </div>
             <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]">PetHaven</h2>
           </div>

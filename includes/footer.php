@@ -1,4 +1,3 @@
-<!-- includes/footer.php -->
 <footer class="bg-[#f5f2f0] px-10 py-6 mt-auto">
   <div class="flex flex-wrap justify-between items-start gap-6">
 

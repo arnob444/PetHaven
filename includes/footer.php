@@ -5,7 +5,7 @@
     <div>
       <h4 class="text-[#181511] text-sm font-bold mb-2">Connect with Us</h4>
       <p class="text-[#8a7760] text-sm font-normal">Email: 
-        <a href="mailto:pethaven@gmail.com" class="underline">pethaven@gmail.com</a>
+        <a href="mailto:pethaven@gmail.com" class="">pethaven@gmail.com</a>
       </p>
     </div>
 
@@ -13,9 +13,9 @@
     <div>
       <h4 class="text-[#181511] text-sm font-bold mb-2">Quick Links</h4>
       <div class="flex flex-wrap gap-4">
-        <a href="../index.php" class="text-[#8a7760] text-sm font-normal underline">Home</a>
-        <a href="../search.php?listing_type=adoption" class="text-[#8a7760] text-sm font-normal underline">Adoption</a>
-        <a href="../search.php?listing_type=buy_sell" class="text-[#8a7760] text-sm font-normal underline">Buy/Sell</a>
+        <a href="index.php" class="text-[#8a7760] text-sm font-normal ">Home</a>
+        <a href="search.php?listing_type=adoption" class="text-[#8a7760] text-sm font-normal ">Adoption</a>
+        <a href="search.php?listing_type=buy_sell" class="text-[#8a7760] text-sm font-normal ">Buy/Sell</a>
       </div>
     </div>
 

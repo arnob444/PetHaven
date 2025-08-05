@@ -25,6 +25,13 @@ if (isset($_SESSION['user_id'])) {
     $app_result = mysqli_stmt_get_result($stmt);
     $has_applied = mysqli_num_rows($app_result) > 0;
 }
+
+// Fetch vaccination records
+$records_query = "SELECT * FROM medical_records WHERE pet_id = ? ORDER BY created_at DESC";
+$stmt = mysqli_prepare($conn, $records_query);
+mysqli_stmt_bind_param($stmt, "i", $pet_id);
+mysqli_stmt_execute($stmt);
+$records_result = mysqli_stmt_get_result($stmt);
 ?>
 
 <!DOCTYPE html>
@@ -105,6 +112,27 @@ if (isset($_SESSION['user_id'])) {
                 <p class="text-[#181511] text-base font-medium leading-normal"><strong>Location:</strong> <?php echo htmlspecialchars($pet['location'] ? $pet['location'] : "Unknown"); ?></p>
                 <p class="text-[#181511] text-base font-medium leading-normal"><strong>Posted by:</strong> <?php echo htmlspecialchars($pet['username']); ?></p>
                 <p class="text-[#181511] text-base font-medium leading-normal"><strong>Posted on:</strong> <?php echo htmlspecialchars(date('Y-m-d', strtotime($pet['created_at']))); ?></p>
+              </div>
+              <!-- Vaccination Records Section -->
+              <div class="flex flex-col gap-4">
+                <h3 class="text-[#181511] text-lg font-bold leading-tight">Vaccination Records</h3>
+                <?php if (mysqli_num_rows($records_result) > 0): ?>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                    <?php while ($record = mysqli_fetch_assoc($records_result)): ?>
+                      <div class="flex flex-col gap-2 rounded-xl border border-[#e4e1dd] bg-white p-4">
+                        <p class="text-[#181511] text-base font-medium leading-normal"><strong>Vaccine:</strong> <?php echo htmlspecialchars($record['vaccine_name']); ?></p>
+                        <p class="text-[#8a7760] text-sm font-normal leading-normal"><strong>Applied Date:</strong> <?php echo htmlspecialchars($record['vaccine_date']); ?></p>
+                      </div>
+                    <?php endwhile; ?>
+                  </div>
+                <?php else: ?>
+                  <p class="text-[#8a7760] text-sm font-normal leading-normal">No vaccination records available for this pet.</p>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $pet['user_id']): ?>
+                  <a href="../medical/add_medical.php?pet_id=<?php echo $pet['id']; ?>" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f39224] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Add Vaccination Record</span>
+                  </a>
+                <?php endif; ?>
               </div>
               <div class="flex flex-wrap gap-3">
                 <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != $pet['user_id']): ?>

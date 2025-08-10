@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../includes/config.php';
+  include '../includes/config.php';
 
 $error = '';
 $success = '';
@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" />
 
   <title>PetHaven Match - Register</title>
-  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
@@ -67,10 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f5f2f0] px-10 py-3">
         <div class="flex items-center gap-4 text-[#181511]">
           <div class="size-4">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor"></path>
-            </svg>
-          </div>
+              <img src="../assets/images/icons/logo.png" alt="PetHaven Logo" class="w-5 h-4" />
+            </div>
           <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]"><a href="index.php">PetHaven</a></h2>
         </div>
         <div class="flex flex-1 justify-end gap-8">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'includes/config.php';
+  include 'includes/config.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: auth/login.php');
@@ -44,8 +44,6 @@ $medical_result = mysqli_stmt_get_result($stmt);
     />
 
     <title>PetHaven - Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
 
@@ -96,7 +94,7 @@ $medical_result = mysqli_stmt_get_result($stmt);
               </a>
             </div>
             <p class="text-[#8a7760] text-sm font-normal leading-normal px-4 py-1">
-              You can only add medical records for pets you’ve personally added.
+              You can only add medical records for pets you have personally added.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-3">
               <?php while ($pet = mysqli_fetch_assoc($pets_result)): ?>

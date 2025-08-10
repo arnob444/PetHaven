@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'includes/config.php';
+  include 'includes/config.php';
 
 $where = "WHERE 1=1";
 $params = [];
@@ -48,8 +48,6 @@ $result = mysqli_stmt_get_result($stmt);
     />
 
     <title>PetHaven - Search</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
 

@@ -1,7 +1,7 @@
 <?php
 ob_start(); // Start output buffering to prevent header issues
 session_start();
-require_once '../includes/config.php';
+  include '../includes/config.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../../auth/login.php');

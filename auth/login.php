@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../includes/config.php';
+  include '../includes/config.php';
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -47,16 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="layout-container flex h-full grow flex-col">
       <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f2f1] px-10 py-3">
         <div class="flex items-center gap-4 text-[#171512]">
-          <div class="size-4">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z"
-                  fill="currentColor"
-                ></path>
-            </svg>
-          </div>
+           <div class="size-4">
+              <img src="../assets/images/icons/logo.png" alt="PetHaven Logo" class="w-5 h-4" />
+            </div>
           <h2 class="text-[#181511] text-lg font-bold leading-tight tracking-[-0.015em]"><a href="index.php">PetHaven</a></h2>
         </div>
         <div class="flex flex-1 justify-end gap-8">

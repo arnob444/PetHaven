@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'includes/config.php';
+  include 'includes/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,15 +16,13 @@ require_once 'includes/config.php';
     />
 
     <title>PetHaven</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
 
 <body>
     <div
       class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden"
-      style='--select-button-svg: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(130,118,104)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e"); font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'
+      style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'
     >
       <div class="layout-container flex h-full grow flex-col">
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f2f1] px-10 py-3">
@@ -69,7 +67,7 @@ require_once 'includes/config.php';
                 <p class="text-[#171512] text-base font-medium leading-normal pb-2">Type</p>
                 <select
                   name="listing_type"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#171512] focus:outline-0 focus:ring-0 border border-[#e4e1dd] bg-white focus:border-[#e4e1dd] h-14 bg-[image:--select-button-svg] placeholder:text-[#827668] p-[15px] text-base font-normal leading-normal"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#171512] focus:outline-0 focus:ring-0 border border-[#e4e1dd] bg-white focus:border-[#e4e1dd] h-14  placeholder:text-[#827668] p-[15px] text-base font-normal leading-normal"
                 >
                   <option value="">Any</option>
                   <option value="adoption">Adoption</option>
@@ -80,7 +78,7 @@ require_once 'includes/config.php';
                 <p class="text-[#171512] text-base font-medium leading-normal pb-2">Breed</p>
                 <select
                   name="breed"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#171512] focus:outline-0 focus:ring-0 border border-[#e4e1dd] bg-white focus:border-[#e4e1dd] h-14 bg-[image:--select-button-svg] placeholder:text-[#827668] p-[15px] text-base font-normal leading-normal"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#171512] focus:outline-0 focus:ring-0 border border-[#e4e1dd] bg-white focus:border-[#e4e1dd] h-14  placeholder:text-[#827668] p-[15px] text-base font-normal leading-normal"
                 >
                   <option value="">Any</option>
                   <?php
@@ -96,7 +94,7 @@ require_once 'includes/config.php';
                 <p class="text-[#171512] text-base font-medium leading-normal pb-2">Age</p>
                 <select
                   name="age"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#171512] focus:outline-0 focus:ring-0 border border-[#e4e1dd] bg-white focus:border-[#e4e1dd] h-14 bg-[image:--select-button-svg] placeholder:text-[#827668] p-[15px] text-base font-normal leading-normal"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#171512] focus:outline-0 focus:ring-0 border border-[#e4e1dd] bg-white focus:border-[#e4e1dd] h-14 placeholder:text-[#827668] p-[15px] text-base font-normal leading-normal"
                 >
                   <option value="">Any</option>
                   <?php
@@ -112,7 +110,7 @@ require_once 'includes/config.php';
                 <p class="text-[#171512] text-base font-medium leading-normal pb-2">Location</p>
                 <select
                   name="location"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#171512] focus:outline-0 focus:ring-0 border border-[#e4e1dd] bg-white focus:border-[#e4e1dd] h-14 bg-[image:--select-button-svg] placeholder:text-[#827668] p-[15px] text-base font-normal leading-normal"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#171512] focus:outline-0 focus:ring-0 border border-[#e4e1dd] bg-white focus:border-[#e4e1dd] h-14 placeholder:text-[#827668] p-[15px] text-base font-normal leading-normal"
                 >
                   <option value="">Any</option>
                   <?php
@@ -162,7 +160,7 @@ require_once 'includes/config.php';
                 <div class="flex flex-col gap-3 pb-3">
                   <div
                     class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl"
-                    style='background-image: url("<?php echo $pet['photo'] ? "assets/images/uploads/" . htmlspecialchars(basename($pet['photo'])) : "assets/images/placeholder.jpg"; ?>");'
+                    style='background-image: url("<?php echo $pet['photo'] ? "assets/images/uploads/" . htmlspecialchars(basename($pet['photo'])) : "assets/images/uploads/placeholder.png"; ?>");'
                   ></div>
                   <div>
                     <p class="text-[#171512] text-base font-medium leading-normal"><?php echo htmlspecialchars($pet['name']); ?></p>
@@ -176,9 +174,39 @@ require_once 'includes/config.php';
             </div>
           </div>
         </div>
+      <!-- Our sponser -->
+      <div class="w-full bg-red-600 py-2 overflow-hidden relative">
+        <div class="absolute left top-1/2 -translate-y-1/2 bg-yellow-400 text-black font-bold px-4 z-10">
+          Our Sponsors
+        </div>
+        <div class="marquee whitespace-nowrap text-white font-semibold text-sm sm:text-base">
+          <span class="mx-6">Partner: ReHome</span>
+          <span class="mx-6">Sponsor: TakeCare</span>
+          <span class="mx-6">Partner: Rescue Pet</span>
+          <span class="mx-6">Sponsor: Good Food</span>
+          <span class="mx-6">Partner: SoftDev</span>
+          <span class="mx-6">Sponsor: Ajker Deal</span>
+        </div>
+      </div>
+
+      <style>
+        .marquee {
+          display: inline-block;
+          padding-left: 100%;
+          animation: marquee-scroll 25s linear infinite;
+        }
+
+        @keyframes marquee-scroll {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+      </style>
          <?php include 'includes/footer.php'; ?>
       </div>
     </div>
 </body>
-
 </html>

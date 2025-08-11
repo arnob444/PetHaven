@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = $_POST['password'];
   $confirm_password = $_POST['confirm_password'];
 
-  // Validation
   if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
     $error = "All fields are required.";
   } elseif ($password !== $confirm_password) {
@@ -18,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $error = "Invalid email format.";
   } else {
-    // Check if email already exists
     $query = "SELECT * FROM users WHERE email = ? LIMIT 1";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "s", $email);
@@ -28,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_num_rows($result) > 0) {
       $error = "Email already exists.";
     } else {
-      // Hash password and insert user
       $hashed_password = password_hash($password, PASSWORD_DEFAULT);
       $query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
       $stmt = mysqli_prepare($conn, $query);

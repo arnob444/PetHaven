@@ -139,7 +139,6 @@ $records_result = mysqli_stmt_get_result($stmt);
                 <button onclick="toggleTerms()" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f5f2f0] text-[#181511] text-sm font-bold leading-normal tracking-[0.015em]">
                   <span class="truncate">Terms & Conditions</span>
                 </button>
-                <!-- Terms & Conditions Modal -->
                 <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
                   <div class="bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-[600px] max-h-[90vh] overflow-y-auto">
                     <h3 class="text-[#181511] text-lg font-bold leading-tight mb-4">নির্দেশনাবলী</h3>
@@ -158,7 +157,7 @@ $records_result = mysqli_stmt_get_result($stmt);
                 * ক্রেতা ও বিক্রেতার মধ্যে সকল প্রকার লেনদেন ক্রেতা ও বিক্রেতা নিজ নিজ দায়িত্বে করবেন। PetHaven কর্তৃপক্ষ লেনদেন সংক্রান্ত কোনো দায়িত্ব নিতে বাধ্য নন।
                 
                 
-                General Instructions:
+               <strong> General Instructions: </strong>
                   Conduct all transactions in your local area. Meet the seller in person, thoroughly inspect the product, and only pay once you are completely satisfied.
                   Exchange the product and money at the same time.
 

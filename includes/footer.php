@@ -48,13 +48,13 @@
         <svg class="w-5 h-5 text-[#FF8A65]" fill="currentColor" viewBox="0 0 24 24">
           <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h8v2H8v-2z"/>
         </svg>
-        <a href="mailto:pethaven@gmail.com" class="hover:text-[#FF8A65]">pethaven01@gmail.com</a>
+        <a href="pethaven@gmail.com" class="hover:text-[#FF8A65]">pethaven01@gmail.com</a>
       </div>
       <div class="flex items-center gap-3 text-gray-500 text-sm">
         <svg class="w-5 h-5 text-[#FF8A65]" fill="currentColor" viewBox="0 0 24 24">
           <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h8v2H8v-2z"/>
         </svg>
-        <a href="mailto:pethaven@gmail.com" class="hover:text-[#FF8A65]">pethaven02@gmail.com</a>
+        <a href="pethaven@gmail.com" class="hover:text-[#FF8A65]">pethaven02@gmail.com</a>
       </div>
     </div>
 

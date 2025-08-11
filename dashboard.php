@@ -9,21 +9,21 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch user's pets
+
 $pets_query = "SELECT * FROM pets WHERE user_id = ? ORDER BY created_at DESC";
 $stmt = mysqli_prepare($conn, $pets_query);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
 mysqli_stmt_execute($stmt);
 $pets_result = mysqli_stmt_get_result($stmt);
 
-// Fetch adoption requests (received)
+
 $applications_query = "SELECT a.*, p.name AS pet_name FROM adoption_applications a JOIN pets p ON a.pet_id = p.id WHERE p.user_id = ? ORDER BY a.created_at DESC";
 $stmt = mysqli_prepare($conn, $applications_query);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
 mysqli_stmt_execute($stmt);
 $applications_result = mysqli_stmt_get_result($stmt);
 
-// Fetch medical logs
+
 $medical_query = "SELECT m.*, p.name AS pet_name FROM medical_records m JOIN pets p ON m.pet_id = p.id WHERE p.user_id = ? ORDER BY m.created_at DESC";
 $stmt = mysqli_prepare($conn, $medical_query);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
